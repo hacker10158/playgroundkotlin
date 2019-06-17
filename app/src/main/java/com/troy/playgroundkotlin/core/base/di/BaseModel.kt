@@ -3,6 +3,7 @@ package com.troy.playgroundkotlin.core.base.di
 import android.arch.lifecycle.ViewModelProvider
 import com.troy.playgroundkotlin.core.base.viewmodel.BaseViewModel
 import com.troy.playgroundkotlin.core.utility.ViewModelProviderFactory
+import com.troy.playgroundkotlin.server.GitClientInterface
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -11,8 +12,8 @@ import javax.inject.Named
 class BaseModule {
 
     @Provides
-    fun provideBaseViewModel(): BaseViewModel {
-        return BaseViewModel()
+    fun provideBaseViewModel(gitClientInterface: GitClientInterface): BaseViewModel {
+        return BaseViewModel(gitClientInterface)
     }
 
     @Provides

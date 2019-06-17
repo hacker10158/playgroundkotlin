@@ -35,7 +35,10 @@ ext {
     viewmodel_version = '1.1.1'
     rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'
+    rxkotlin_version = '2.3.0'
     rxrelay_version = '2.0.0'
+    retrofit_version = '2.3.0'
+    okhttp_version = '3.11.0'
 }
 
 dependencies {
@@ -69,7 +72,19 @@ dependencies {
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxkotlin_version}"
 
     // RxRelay - for RxBus
     implementation "com.jakewharton.rxrelay2:rxrelay:${rxrelay_version}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+    // Retrofit with RxJava
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}"
+
+    // Okhttp
+    implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttp_version}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okhttp_version}"
 }

@@ -42,6 +42,12 @@ class BaseFragment : DaggerFragment() {
         return binding!!.root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        viewModel?.searchUsers()
+    }
+
     override fun onDestroy() {
         compositeDisposable!!.dispose()
         super.onDestroy()
