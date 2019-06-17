@@ -15,7 +15,7 @@ object Log {
 
     private var sMode = Mode.AppNameWithMethod
     private var sEnabled = true
-    private var sAppName = "Soocii"
+    private var sAppName = "GitSearch"
 
     private val tag: String
         get() {

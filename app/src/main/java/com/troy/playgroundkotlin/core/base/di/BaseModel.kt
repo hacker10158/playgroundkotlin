@@ -1,6 +1,7 @@
 package com.troy.playgroundkotlin.core.base.di
 
 import android.arch.lifecycle.ViewModelProvider
+import com.troy.playgroundkotlin.core.base.view.SearchUserAdapter
 import com.troy.playgroundkotlin.core.base.viewmodel.BaseViewModel
 import com.troy.playgroundkotlin.core.utility.ViewModelProviderFactory
 import com.troy.playgroundkotlin.server.GitClientInterface
@@ -14,6 +15,11 @@ class BaseModule {
     @Provides
     fun provideBaseViewModel(gitClientInterface: GitClientInterface): BaseViewModel {
         return BaseViewModel(gitClientInterface)
+    }
+
+    @Provides
+    fun provideSearchUserAdapter(): SearchUserAdapter {
+        return SearchUserAdapter()
     }
 
     @Provides

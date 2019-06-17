@@ -1,6 +1,6 @@
 package com.troy.playgroundkotlin.di.builder
 
-import com.troy.playgroundkotlin.core.base.BaseFragment
+import com.troy.playgroundkotlin.core.base.view.BaseFragment
 import com.troy.playgroundkotlin.core.base.di.BaseModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

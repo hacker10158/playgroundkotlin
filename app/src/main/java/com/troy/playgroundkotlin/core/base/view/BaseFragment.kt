@@ -1,17 +1,16 @@
-package com.troy.playgroundkotlin.core.base
+package com.troy.playgroundkotlin.core.base.view
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.troy.playgroundkotlin.R
 import com.troy.playgroundkotlin.core.base.viewmodel.BaseViewModel
-import com.troy.playgroundkotlin.core.utility.Log
 import com.troy.playgroundkotlin.databinding.FragmentBaseBinding
-
 
 import javax.inject.Inject
 import javax.inject.Named
@@ -19,16 +18,18 @@ import javax.inject.Named
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 
-
 class BaseFragment : DaggerFragment() {
 
     private var binding: FragmentBaseBinding? = null
     private var viewModel: BaseViewModel? = null
 
     @field:[Inject Named("base")]
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModelFactory : ViewModelProvider.Factory
 
-    private var compositeDisposable: CompositeDisposable? = null
+    @Inject
+    lateinit var searchUserAdapter : SearchUserAdapter
+
+    private var compositeDisposable : CompositeDisposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,11 @@ class BaseFragment : DaggerFragment() {
         return binding!!.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
     override fun onStart() {
         super.onStart()
 
@@ -51,5 +57,11 @@ class BaseFragment : DaggerFragment() {
     override fun onDestroy() {
         compositeDisposable!!.dispose()
         super.onDestroy()
+    }
+
+    private fun initView() {
+        binding?.rvContent?.adapter = searchUserAdapter
+        binding?.rvContent?.layoutManager = LinearLayoutManager(context)
+//        binding.rvContent.addOnScrollListener(viewModel.createScrollListener())
     }
 }

@@ -2,7 +2,7 @@ package com.troy.playgroundkotlin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.troy.playgroundkotlin.core.base.BaseFragment
+import com.troy.playgroundkotlin.core.base.view.BaseFragment
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {

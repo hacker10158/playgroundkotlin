@@ -1,6 +1,7 @@
 package com.troy.playgroundkotlin.server
 
 import android.content.Context
+import com.troy.playgroundkotlin.R
 import com.troy.playgroundkotlin.server.response.SearchUserResponse
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -17,7 +18,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-class GitClient(private val context: Context) : GitClientInterface {
+class GitClient( context: Context) : GitClientInterface {
 
     companion object {
         private const val MAX_REQUESTS = 64
@@ -57,8 +58,7 @@ class GitClient(private val context: Context) : GitClientInterface {
         // should not change this into main branch( ex dev-2.0 or master)
         // It can be test in local by modify settings.xml or create another branch for server build test
 
-//        val awsAddress = context.resources.getString(R.string.server_address)
-        val awsAddress = "https://api.github.com/"
+        val awsAddress = context.resources.getString(R.string.server_address)
         val retrofit = Retrofit.Builder()
             .baseUrl(awsAddress)
             .client(client)

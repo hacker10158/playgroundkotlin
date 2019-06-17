@@ -20,5 +20,13 @@
             android:layout_height="wrap_content"
             tools:text="Hello World!" />
 
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:userdata="@{viewModel.items}"
+                android:loadingmore="@{viewModel.loadingMore}"/>
+
     </FrameLayout>
 </layout>
