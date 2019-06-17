@@ -62,6 +62,6 @@ class BaseFragment : DaggerFragment() {
     private fun initView() {
         binding?.rvContent?.adapter = searchUserAdapter
         binding?.rvContent?.layoutManager = LinearLayoutManager(context)
-//        binding.rvContent.addOnScrollListener(viewModel.createScrollListener())
+        binding?.rvContent?.addOnScrollListener(viewModel?.createScrollListener())
     }
 }

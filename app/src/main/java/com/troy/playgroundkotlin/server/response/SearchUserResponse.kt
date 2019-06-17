@@ -4,4 +4,4 @@ import com.troy.playgroundkotlin.core.base.model.UserData
 
 data class SearchUserResponse(val total_count : Int,
                               val incomplete_results : Boolean,
-                              val items : List<UserData>)
+                              val items : ArrayList<UserData>)

@@ -54,15 +54,17 @@ class SearchUserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun addData(userDatas: List<UserData>?) {
+    fun addData(userDatas : ArrayList<UserData>?) {
         userDatas?.let {
+
             val start = dataList.size
             dataList.addAll(it)
             val end = dataList.size
+
             if (start == 0) {
                 notifyDataSetChanged()
             } else {
-                notifyItemRangeInserted(start, end)
+                notifyItemRangeInserted(start, end - start)
             }
         }
     }

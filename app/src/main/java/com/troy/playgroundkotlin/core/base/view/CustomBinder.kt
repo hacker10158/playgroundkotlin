@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import com.troy.playgroundkotlin.core.base.model.UserData
 
 @BindingAdapter("android:userdata")
-fun RecyclerView.updateData(items : MutableList<UserData>?) {
+fun RecyclerView.updateData(items : ArrayList<UserData>?) {
     if(adapter is SearchUserAdapter) {
         (adapter as SearchUserAdapter).addData(items)
     }
