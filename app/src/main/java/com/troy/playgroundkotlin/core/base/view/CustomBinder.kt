@@ -7,7 +7,11 @@ import com.troy.playgroundkotlin.core.base.model.UserData
 @BindingAdapter("android:userdata")
 fun RecyclerView.updateData(items : ArrayList<UserData>?) {
     if(adapter is SearchUserAdapter) {
-        (adapter as SearchUserAdapter).addData(items)
+        items?.let {
+            (adapter as SearchUserAdapter).addData(items)
+        } ?: run {
+            (adapter as SearchUserAdapter).cleanData()
+        }
     }
 }
 

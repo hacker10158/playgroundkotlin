@@ -19,7 +19,8 @@ import java.util.concurrent.TimeUnit
 class BaseViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewModel() {
     private val PRELOAD_COUNT = 15
 
-    var items = ObservableField<ArrayList<UserData>>()
+    var newItems = ObservableField<ArrayList<UserData>>()
+    var searchText = ObservableField<String>()
     var loadingMore = ObservableBoolean(false)
 
     private var gitClient : GitClientInterface = gitClientInterface
@@ -32,8 +33,9 @@ class BaseViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewMo
         setupScrollSubject()
     }
 
-    public fun searchUsers() {
-        keyword = "hacker10"
+    public fun onSearchClick() {
+        keyword = searchText.get()
+        newItems.set(null)
         isStartLoading = true
         loadingMore.set(false)
         page = 1
@@ -62,13 +64,14 @@ class BaseViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewMo
                     loadingMore.set(false)
                 } else {
                     page++
-                    items.set(it.items)
+                    newItems.set(it.items)
                     loadingMore.set(false)
                 }
             },
                 onError = {
                     isStartLoading = false
                     loadingMore.set(false)
+                    Log.d("Error on loading $it")
                 })
 
         addDisposable(disposable)
@@ -81,7 +84,6 @@ class BaseViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewMo
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(onNext = {
-                Log.d("scrolled")
                 search()
             }, onError = {
                 Log.e("Error on loading more. Throwable: $it")

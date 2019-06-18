@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.troy.playgroundkotlin.core.base.model.UserData
+import com.troy.playgroundkotlin.core.utility.Log
 import com.troy.playgroundkotlin.databinding.LoadingMoreItemBinding
 import com.troy.playgroundkotlin.databinding.SearchUserItemBinding
 import java.util.ArrayList
@@ -59,12 +60,10 @@ class SearchUserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             val start = dataList.size
             dataList.addAll(it)
-            val end = dataList.size
-
             if (start == 0) {
                 notifyDataSetChanged()
             } else {
-                notifyItemRangeInserted(start, end - start)
+                notifyItemRangeInserted(start, userDatas.size)
             }
         }
     }
