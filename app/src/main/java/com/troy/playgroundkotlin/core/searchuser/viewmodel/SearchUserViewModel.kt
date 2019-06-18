@@ -1,11 +1,11 @@
-package com.troy.playgroundkotlin.core.base.viewmodel
+package com.troy.playgroundkotlin.core.searchuser.viewmodel
 
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.troy.playgroundkotlin.core.base.model.UserData
+import com.troy.playgroundkotlin.core.searchuser.model.UserData
 import com.troy.playgroundkotlin.core.utility.AutoDisposeViewModel
 import com.troy.playgroundkotlin.core.utility.Log
 import com.troy.playgroundkotlin.server.GitClientInterface
@@ -16,7 +16,7 @@ import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import java.util.concurrent.TimeUnit
 
-class BaseViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewModel() {
+class SearchUserViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewModel() {
     private val PRELOAD_COUNT = 15
 
     var newItems = ObservableField<ArrayList<UserData>>()

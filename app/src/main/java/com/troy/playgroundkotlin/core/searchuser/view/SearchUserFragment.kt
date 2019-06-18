@@ -1,4 +1,4 @@
-package com.troy.playgroundkotlin.core.base.view
+package com.troy.playgroundkotlin.core.searchuser.view
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -12,18 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.troy.playgroundkotlin.R
-import com.troy.playgroundkotlin.core.base.viewmodel.BaseViewModel
+import com.troy.playgroundkotlin.core.searchuser.viewmodel.SearchUserViewModel
 import com.troy.playgroundkotlin.databinding.FragmentBaseBinding
 
 import javax.inject.Inject
 import javax.inject.Named
 
 import dagger.android.support.DaggerFragment
-import io.reactivex.disposables.CompositeDisposable
 
-class BaseFragment : DaggerFragment(), View.OnKeyListener {
+class SearchUserFragment : DaggerFragment(), View.OnKeyListener {
 
-    @field:[Inject Named("base")]
+    @field:[Inject Named("searchuser")]
     lateinit var viewModelFactory : ViewModelProvider.Factory
 
     @Inject
@@ -31,13 +30,11 @@ class BaseFragment : DaggerFragment(), View.OnKeyListener {
 
     private lateinit var binding: FragmentBaseBinding
 
-    private lateinit var compositeDisposable : CompositeDisposable
-    private lateinit var viewModel : BaseViewModel
+    private lateinit var viewModel : SearchUserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(BaseViewModel::class.java)
-        compositeDisposable = CompositeDisposable()
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchUserViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,11 +46,6 @@ class BaseFragment : DaggerFragment(), View.OnKeyListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-    }
-
-    override fun onDestroy() {
-        compositeDisposable.dispose()
-        super.onDestroy()
     }
 
     private fun initView() {

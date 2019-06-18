@@ -2,7 +2,7 @@ package com.troy.playgroundkotlin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.troy.playgroundkotlin.core.base.view.BaseFragment
+import com.troy.playgroundkotlin.core.searchuser.view.SearchUserFragment
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -11,7 +11,7 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        showFragment(BaseFragment())
+        showFragment(SearchUserFragment())
     }
 
     private fun showFragment(fragment: Fragment) {

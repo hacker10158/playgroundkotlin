@@ -1,7 +1,7 @@
-package com.troy.playgroundkotlin.core.base.view
+package com.troy.playgroundkotlin.core.searchuser.view
 
 import android.support.v7.widget.RecyclerView
-import com.troy.playgroundkotlin.core.base.model.UserData
+import com.troy.playgroundkotlin.core.searchuser.model.UserData
 import com.troy.playgroundkotlin.core.utility.FrescoHelper
 import com.troy.playgroundkotlin.databinding.SearchUserItemBinding
 

@@ -1,8 +1,8 @@
-package com.troy.playgroundkotlin.core.base.view
+package com.troy.playgroundkotlin.core.searchuser.view
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
-import com.troy.playgroundkotlin.core.base.model.UserData
+import com.troy.playgroundkotlin.core.searchuser.model.UserData
 
 @BindingAdapter("android:userdata")
 fun RecyclerView.updateData(items : ArrayList<UserData>?) {

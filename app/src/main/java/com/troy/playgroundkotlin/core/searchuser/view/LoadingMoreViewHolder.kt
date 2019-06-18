@@ -1,4 +1,4 @@
-package com.troy.playgroundkotlin.core.base.view
+package com.troy.playgroundkotlin.core.searchuser.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

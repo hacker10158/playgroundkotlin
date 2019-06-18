@@ -1,13 +1,13 @@
 package com.troy.playgroundkotlin.di.builder
 
-import com.troy.playgroundkotlin.core.base.view.BaseFragment
-import com.troy.playgroundkotlin.core.base.di.BaseModule
+import com.troy.playgroundkotlin.core.searchuser.view.SearchUserFragment
+import com.troy.playgroundkotlin.core.searchuser.di.SearchUserModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class MainFragmentProvider {
 
-    @ContributesAndroidInjector(modules = [BaseModule::class])
-    internal abstract fun provideBaseFragment(): BaseFragment
+    @ContributesAndroidInjector(modules = [SearchUserModule::class])
+    internal abstract fun provideBaseFragment(): SearchUserFragment
 }
