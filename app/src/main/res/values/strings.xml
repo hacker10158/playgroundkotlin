@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">GitHub Search User</string>
     <string name="search">Search</string>
+    <string name="error_message_empty_keyword">Please enter keyword!!</string>
+    <string name="error_message_no_result">No search result !!</string>
+    <string name="error_message_unknown_error">Something wrong. Please try again.</string>
 </resources>

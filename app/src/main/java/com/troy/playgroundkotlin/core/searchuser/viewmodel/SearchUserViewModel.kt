@@ -2,12 +2,12 @@ package com.troy.playgroundkotlin.core.searchuser.viewmodel
 
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.databinding.ObservableInt
+import android.text.TextUtils
 import com.troy.playgroundkotlin.core.searchuser.model.UserData
 import com.troy.playgroundkotlin.core.utility.AutoDisposeViewModel
 import com.troy.playgroundkotlin.core.utility.Log
+import com.troy.playgroundkotlin.server.ErrorCode
 import com.troy.playgroundkotlin.server.GitClientInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -17,36 +17,38 @@ import io.reactivex.subjects.Subject
 import java.util.concurrent.TimeUnit
 
 class SearchUserViewModel(gitClientInterface : GitClientInterface) : AutoDisposeViewModel() {
-    private val PRELOAD_COUNT = 15
 
     var newItems = ObservableField<ArrayList<UserData>>()
     var searchText = ObservableField<String>()
     var loadingMore = ObservableBoolean(false)
+    var errorCode = ObservableInt(ErrorCode.ERROR_CODE_DEFAULT)
 
     private var gitClient : GitClientInterface = gitClientInterface
     private lateinit var scrollSubject: Subject<Int>
     private var page = 1
     private var keyword : String? = null
-    private var isStartLoading = false
 
     init {
         setupScrollSubject()
     }
 
-    public fun onSearchClick() {
+    fun onSearchClick() {
+        errorCode.set(ErrorCode.ERROR_CODE_DEFAULT)
+
+        if(TextUtils.isEmpty(searchText.get())) {
+            errorCode.set(ErrorCode.ERROR_CODE_EMPTY_KEYWORD)
+            return
+        }
+
         keyword = searchText.get()
         newItems.set(null)
-        isStartLoading = true
         loadingMore.set(false)
         page = 1
+
         search()
     }
 
     private fun search() {
-        if (!isStartLoading) {
-            Log.d("not allow start loading")
-            return
-        }
 
         if (loadingMore.get()) {
             Log.d("is loading more")
@@ -60,8 +62,10 @@ class SearchUserViewModel(gitClientInterface : GitClientInterface) : AutoDispose
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(onSuccess = {
                 if (it.items.isEmpty()) {
-                    isStartLoading = false
                     loadingMore.set(false)
+                    if (page == 1) {
+                        errorCode.set(ErrorCode.ERROR_CODE_NO_RESULT)
+                    }
                 } else {
                     page++
                     newItems.set(it.items)
@@ -69,13 +73,16 @@ class SearchUserViewModel(gitClientInterface : GitClientInterface) : AutoDispose
                 }
             },
                 onError = {
-                    isStartLoading = false
                     loadingMore.set(false)
-                    Log.d("Error on loading $it")
+                    errorCode.set(ErrorCode.ERROR_CODE_UNKNOWN)
+                    Log.e("Error on search user. Throwable: $it")
                 })
 
         addDisposable(disposable)
+    }
 
+    fun loadNextPage() {
+        scrollSubject.onNext(0)
     }
 
     private fun setupScrollSubject() {
@@ -86,37 +93,10 @@ class SearchUserViewModel(gitClientInterface : GitClientInterface) : AutoDispose
             .subscribeBy(onNext = {
                 search()
             }, onError = {
+                errorCode.set(ErrorCode.ERROR_CODE_UNKNOWN)
                 Log.e("Error on loading more. Throwable: $it")
             })
 
         addDisposable(disposable)
-    }
-
-    fun createScrollListener(): RecyclerView.OnScrollListener {
-        return object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val totalCount = recyclerView!!.layoutManager.itemCount
-                val lastPosition: Int
-                if (recyclerView.layoutManager is GridLayoutManager) {
-                    lastPosition = (recyclerView.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-                } else if (recyclerView.layoutManager is LinearLayoutManager) {
-                    lastPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                } else {
-                    val lastChildView = recyclerView.layoutManager.getChildAt(recyclerView.layoutManager.childCount - 1)
-                    if (lastChildView == null) {
-                        Log.w("lastChildView null") // what this mean?
-                        return
-                    }
-                    lastPosition = recyclerView.layoutManager.getPosition(lastChildView)
-                }
-                Log.d("lastPosition $lastPosition totalCount $totalCount")
-
-                if (dy > 0 && lastPosition >= totalCount - PRELOAD_COUNT) {
-                    scrollSubject.onNext(0)
-                }
-            }
-        }
     }
 }

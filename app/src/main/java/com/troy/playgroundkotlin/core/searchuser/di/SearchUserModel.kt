@@ -23,7 +23,7 @@ class SearchUserModule {
     }
 
     @Provides
-    @Named("searchuser")
+    @Named("search")
     internal fun provideSearchUserViewModelProviderFactory(viewModel: SearchUserViewModel): ViewModelProvider.Factory {
         return ViewModelProviderFactory(viewModel)
     }

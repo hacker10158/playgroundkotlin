@@ -12,7 +12,8 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_color">
+            android:background="@color/background_color"
+            android:errorcode="@{viewModel.errorCode}">
         <android.support.constraint.ConstraintLayout
                 android:id="@+id/cl_search_bar"
                 android:layout_width="match_parent"

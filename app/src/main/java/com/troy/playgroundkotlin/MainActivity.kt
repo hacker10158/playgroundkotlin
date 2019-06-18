@@ -2,7 +2,7 @@ package com.troy.playgroundkotlin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.troy.playgroundkotlin.core.searchuser.view.SearchUserFragment
+import com.troy.playgroundkotlin.core.searchuser.SearchUserFragment
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {
