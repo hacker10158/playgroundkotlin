@@ -2,7 +2,6 @@ package com.troy.playgroundkotlin.core.searchuser
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -11,18 +10,15 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import com.troy.playgroundkotlin.R
 import com.troy.playgroundkotlin.core.searchuser.view.SearchUserAdapter
 import com.troy.playgroundkotlin.core.searchuser.viewmodel.SearchUserViewModel
 import com.troy.playgroundkotlin.core.utility.KeyboardUtil
 import com.troy.playgroundkotlin.core.utility.Log
 import com.troy.playgroundkotlin.databinding.FragmentSearchBinding
-
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import javax.inject.Named
-
-import dagger.android.support.DaggerFragment
 
 class SearchUserFragment : DaggerFragment(), View.OnKeyListener {
 

@@ -9,5 +9,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainFragmentProvider {
 
     @ContributesAndroidInjector(modules = [SearchUserModule::class])
-    internal abstract fun provideBaseFragment(): SearchUserFragment
+    internal abstract fun provideSearchUserFragment(): SearchUserFragment
 }
