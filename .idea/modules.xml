@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PlaygroundKotlin.iml" filepath="$PROJECT_DIR$/PlaygroundKotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/playgroundKotlin.iml" filepath="$PROJECT_DIR$/playgroundKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/playgroundKotlin-app.iml" filepath="$PROJECT_DIR$/app/playgroundKotlin-app.iml" />
     </modules>
   </component>
 </project>
