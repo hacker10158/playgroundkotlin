@@ -14,13 +14,24 @@ class MainActivity : DaggerAppCompatActivity() {
         showFragment(BaseFragment())
     }
 
-    private fun showFragment(fragment: Fragment) {
+    fun showFragment(fragment: Fragment) {
+        val backStateName = fragment.javaClass.name
+
+        val manager = supportFragmentManager
+
+        val ft = manager.beginTransaction()
+        ft.replace(R.id.fl_fragment_container, fragment, backStateName)
+        ft.commitAllowingStateLoss()
+    }
+
+    fun addFragment(fragment: Fragment) {
         val backStateName = fragment.javaClass.name
 
         val manager = supportFragmentManager
 
         val ft = manager.beginTransaction()
         ft.add(R.id.fl_fragment_container, fragment, backStateName)
+        ft.addToBackStack(backStateName)
         ft.commitAllowingStateLoss()
     }
 }

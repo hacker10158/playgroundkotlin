@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/sliding_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="28dp"
+        sothree:umanoShadowHeight="4dp">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+        <TextView
+                android:id="@+id/tv_hello_world"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Hello World!" />
+
+    </FrameLayout>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#FFFFFF">
+
+    </FrameLayout>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
