@@ -36,6 +36,7 @@ ext {
     rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'
     rxrelay_version = '2.0.0'
+    rxkotlin_version = '2.4.0'
 }
 
 dependencies {
@@ -69,6 +70,8 @@ dependencies {
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxkotlin_version}"
+
 
     // RxRelay - for RxBus
     implementation "com.jakewharton.rxrelay2:rxrelay:${rxrelay_version}"
