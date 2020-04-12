@@ -1,7 +1,7 @@
 package com.troy.playgroundkotlin.core.utility;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 public class ViewModelProviderFactory<V> implements ViewModelProvider.Factory {
 

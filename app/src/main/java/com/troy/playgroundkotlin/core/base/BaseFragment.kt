@@ -1,17 +1,14 @@
 package com.troy.playgroundkotlin.core.base
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.troy.playgroundkotlin.R
 import com.troy.playgroundkotlin.core.base.viewmodel.BaseViewModel
-import com.troy.playgroundkotlin.core.utility.Log
 import com.troy.playgroundkotlin.databinding.FragmentBaseBinding
-
 
 import javax.inject.Inject
 import javax.inject.Named
@@ -32,7 +29,7 @@ class BaseFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(BaseViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BaseViewModel::class.java)
         compositeDisposable = CompositeDisposable()
     }
 

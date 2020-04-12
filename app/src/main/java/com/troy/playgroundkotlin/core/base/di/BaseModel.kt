@@ -1,6 +1,6 @@
 package com.troy.playgroundkotlin.core.base.di
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import com.troy.playgroundkotlin.core.base.viewmodel.BaseViewModel
 import com.troy.playgroundkotlin.core.utility.ViewModelProviderFactory
 import dagger.Module
